@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Izbor srednje škole</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      color: #003366;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    select, input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .recommendation {
+      background-color: #e0ffe0;
+      border-left: 5px solid #33cc33;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Koju srednju školu da upišem?</h1>
+    <p>Interaktivni vodič za osnovce</p>
+  </header>
+
+  <main>
+    <h2>Izaberi svoja interesovanja:</h2>
+    <form id="interestForm">
+      <label for="predmet">Omiljeni predmet:</label>
+      <select id="predmet" name="predmet">
+        <option value="">--Izaberi--</option>
+        <option value="matematika">Matematika</option>
+        <option value="biologija">Biologija</option>
+        <option value="likovno">Likovno</option>
+        <option value="tjelesni">Tjelesni</option>
+        <option value="informatika">Informatika</option>
+        <option value="geografija">Geografija</option>
+        <option value="hemija">Hemija</option>
+        <option value="muzicko">Muzičko</option>
+        <option value="engleski jezik">Engleski jezik</option>
+      </select>
+
+      <label for="tipPosla">Šta više voliš:</label>
+      <select id="tipPosla" name="tipPosla">
+        <option value="">--Izaberi--</option>
+        <option value="prakticno">Praktičan rad</option>
+        <option value="teorija">Učenje i teorija</option>
+        <option value="kreativno">Kreativnost i umetnost</option>
+        <option value="pomaganje">Pomaganje ljudima</option>
+      </select>
+
+      <input type="submit" value="Prikaži preporuku">
+    </form>
+
+    <div id="preporuka" class="recommendation" style="display:none;"></div>
+  </main>
+
+  <script>
+    document.getElementById("interestForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const predmet = document.getElementById("predmet").value;
+      const tipPosla = document.getElementById("tipPosla").value;
+      let rezultat = "";
+
+      if (predmet === "matematika" && tipPosla === "teorija") {
+        rezultat = "Preporučujem ti upis u gimnaziju – prirodni smjer ili elektrotehničku školu.";
+      } else if (predmet === "biologija" && tipPosla === "pomaganje") {
+        rezultat = "Medicinska škola je odličan izbor za tebe!";
+      } else if (predmet === "likovno" && tipPosla === "kreativno") {
+        rezultat = "Možda bi ti odgovarala umjetnička škola, grafička škola ili tekstilna škola.";
+      } else if (predmet === "fizicko" && tipPosla === "prakticno") {
+        rezultat = "Razmisli o smjeru za fizioterapeuta ili 5. Gimnazija .";
+      }else if (predmet === "informatika" && tipPosla === "kreativno"){
+        rezultat = "Elektotehnička, graficka ili Gimnazija  sa IT smijerom. ";
+      }else if (predmet === "geografija" && tipPosla === "prakticno"){
+        rezultat = "Razmisli o Srednjoj školi za okoliš i dizajn. ";
+      }else if (predmet === "hemija" && tipPosla === "pomaganje") {
+        rezultat = "Medicinska škola je odličan izbor za tebe! ";
+      } else if (predmet === "muzicko" && tipPosla === "kreativno" ) {
+        rezultat = "Muzička škola je odličan izbor za tebe! ";
+      } else if (predmet === "engleski jezik" && tipPosla === "teorija" ) {
+        rezultat = "Razmisli o Maarif Internacional School";
+
+
+      } else {
+        rezultat = "Pokušaj sa drugačijim izborom – trenutni odgovori nisu dovoljni za jasnu preporuku.";
+      }
+
+      const prikaz = document.getElementById("preporuka");
+      prikaz.style.display = "block";
+      prikaz.textContent = rezultat;
+    });
+  </script>
+</body>
+</html>
